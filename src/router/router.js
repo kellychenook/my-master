@@ -46,6 +46,11 @@ export default [
         props:true, //使用布尔形式，则允许往props传递参数
     },
     {
+        path: '/count-to', //动态路由匹配的使用
+        name:'count_to',
+        component: () => import('@/views/count-to.vue'),
+    },
+    {
         path: '/parent',
         component: () => import('@/views/parent.vue'),
         children: [

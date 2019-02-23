@@ -11,7 +11,6 @@
 
 <script>
     import {getUserInfo} from '@/api/user';
-
     export default {
         name: "home",
         props: {
@@ -41,7 +40,7 @@
             },
             getInfo(){
                 getUserInfo({userId:30}).then(res=>{
-                    console.log(res);
+                    console.log(res.data);
                 })
             }
         }
