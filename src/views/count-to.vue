@@ -34,7 +34,7 @@ export default {
 <style>
     .myClass{
         color: brown;
-        font-size: 24px;
+        font-size: 24px,
     }
 </style>
 

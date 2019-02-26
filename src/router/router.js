@@ -49,6 +49,17 @@ export default [
         path: '/count-to', //动态路由匹配的使用
         name:'count_to',
         component: () => import('@/views/count-to.vue'),
+        meta:{
+            title:'动态数字',
+        }
+    },
+    {
+        path: '/split-pane', //动态路由匹配的使用
+        name:'split_pane',
+        component: () => import('@/views/split-pane.vue'),
+        meta:{
+            title:'split-pane',
+        }
     },
     {
         path: '/parent',
