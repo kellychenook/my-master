@@ -58,7 +58,23 @@ export default [
         name:'split_pane',
         component: () => import('@/views/split-pane.vue'),
         meta:{
-            title:'split-pane',
+            title:'面板分割组件',
+        }
+    },
+    {
+        path: '/render-page', //动态路由匹配的使用
+        name:'render_page',
+        component: () => import('@/views/render-page.vue'),
+        meta:{
+            title:'render-page',
+        }
+    },
+    {
+        path: '/menu-page', //动态路由匹配的使用
+        name:'menu_page',
+        component: () => import('@/views/menu-page.vue'),
+        meta:{
+            title:'菜单列表',
         }
     },
     {

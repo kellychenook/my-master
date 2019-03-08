@@ -6,6 +6,8 @@
         <button @click="handle('replace')">替换成main_info</button>
 
         <button @click="getInfo">请求数据</button>
+
+        <button @click="deleteData">打印数据</button>
     </div>
 </template>
 
@@ -22,6 +24,14 @@
         components: {
         },
         methods: {
+            deleteData(){
+                let a=[1,2,3,4];
+                let b=['a','b','c','d'];
+                delete a[0];
+                this.$delete(b,0);
+                console.log(a);
+                console.log(b);
+            },
             handle(type) {
                 if (type === "back") {
                     this.$router.back();

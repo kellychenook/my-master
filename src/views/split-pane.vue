@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import SplitPane from '@/components/split-pane'
+import SplitPane from '_c/split-pane'
 export default {
     components:{
         SplitPane,
