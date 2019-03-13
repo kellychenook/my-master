@@ -4,7 +4,7 @@ import router from './router/index'
 import store from './store'
 import Bus from './lib/bus'
 // 注意只需不是生产环境的时候，才引入mock;
-if (process.env.NODE_ENV!=='production') require('./mock')
+// if (process.env.NODE_ENV!=='production') require('./mock')
 
 import CountTo from '_c/count-to'
 

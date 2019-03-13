@@ -8,11 +8,14 @@
         <button @click="getInfo">请求数据</button>
 
         <button @click="deleteData">打印数据</button>
+
+        <button @click="handleLogout">退出登录</button>
     </div>
 </template>
 
 <script>
     import {getUserInfo} from '@/api/user';
+    import {mapActions} from 'vuex'
     export default {
         name: "home",
         props: {
@@ -24,6 +27,9 @@
         components: {
         },
         methods: {
+            ...mapActions([
+                'logout'
+            ]),
             deleteData(){
                 let a=[1,2,3,4];
                 let b=['a','b','c','d'];
@@ -51,6 +57,12 @@
             getInfo(){
                 getUserInfo({userId:30}).then(res=>{
                     console.log(res.data);
+                })
+            },
+            handleLogout(){
+                this.logout()
+                this.$$router.push({
+                    name:'login'
                 })
             }
         }

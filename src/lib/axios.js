@@ -1,38 +1,52 @@
 import axios from 'axios'
-import {baseURL} from '@/config'
+import { baseURL } from '@/config'
+import { getToken } from '@/lib/util'
 class HttpRequest {
-    constructor (baseUrl = baseURL){ //es6写法
-        this.baseUrl=baseUrl;
-        this.queue={};//空队列
-        // 
+  constructor (baseUrl = baseURL) {
+    this.baseUrl = baseUrl
+    this.queue = {}
+  }
+  getInsideConfig () {
+    const config = {
+      baseURL: this.baseUrl,
+      headers: {
+        //
+      }
     }
-    getInsideConfig(){
-        const config={
-            baseURL:this.baseUrl,
-            headers:{
-                // 
-            }
-        }
-        return config;
+    return config
+  }
+  distroy (url) {
+    delete this.queue[url]
+    if (!Object.keys(this.queue).length) {
+      // Spin.hide()
     }
-    interceptors(instance){//请求与响应拦截器
-        instance.interceptors.request.use(config=>{ //请求拦截器
-            // 添加一个全局的loading
-        },error=>{
-            return Promise.reject(error);
-        })
-        instance.interceptors.response.use(res=>{ //响应拦截器
-            console.log(res);
-            return res;
-        },error=>{
-            return Promise.reject(error);
-        })
-    }
-    request (options){
-        const instance=axios.create();
-        options=Object.assign(this.getInsideConfig(),options);//将两个对象合并成一个对象；
-        this.interceptors(instance);
-        return instance(options);
-    }
+  }
+  interceptors (instance, url) {
+    instance.interceptors.request.use(config => {
+      // 添加全局的loading...
+      if (!Object.keys(this.queue).length) {
+        // Spin.show()
+      }
+      this.queue[url] = true
+      config.headers['Authorization'] = getToken()
+      return config
+    }, error => {
+      return Promise.reject(error)
+    })
+    instance.interceptors.response.use(res => {
+      this.distroy(url)
+      const { data } = res
+      return data
+    }, error => {
+      this.distroy(url)
+      return Promise.reject(error.response.data)
+    })
+  }
+  request (options) {
+    const instance = axios.create()
+    options = Object.assign(this.getInsideConfig(), options)
+    this.interceptors(instance, options.url)
+    return instance(options)
+  }
 }
-export default HttpRequest;
+export default HttpRequest
