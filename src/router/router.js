@@ -1,10 +1,17 @@
 import Home from '@/views/Home.vue'
+import Layout from '@/views/layout.vue'
 export default [
     {
         path: '/',
         alias:'/home_page', //路由的别名
         name: 'home',
-        component: Home,
+        component: Layout,
+        children:[
+            {
+                path:'home',
+                component:Home
+            }
+        ],
         props: route=>({
             food:route.query.food
         }),

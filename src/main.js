@@ -8,6 +8,10 @@ import Bus from './lib/bus'
 
 import CountTo from '_c/count-to'
 
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+Vue.use(iView);
+
 Vue.config.productionTip = false
 Vue.prototype.$bus=Bus //注册到根实例中；
 

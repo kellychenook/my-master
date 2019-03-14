@@ -1,15 +1,28 @@
 <template>
     <div class="home">
-        <p>{{food}}</p>
+        <!-- <p>{{food}}</p>
         <button @click="handle('back')">返回上一页</button>
         <button @click="handle('push')">跳转至argu</button>
         <button @click="handle('replace')">替换成main_info</button>
-
         <button @click="getInfo">请求数据</button>
-
         <button @click="deleteData">打印数据</button>
+        <button @click="handleLogout">退出登录</button> -->
 
-        <button @click="handleLogout">退出登录</button>
+        <Row>
+            <i-col></i-col>
+        </Row>
+        <Row :gutter="16">
+            <i-col span="8"></i-col>
+            <i-col span="8"></i-col>
+            <i-col span="8"></i-col>
+        </Row>
+        <Row :gutter="16">
+            <i-col :md="6" :sm="12" xs="24"></i-col>
+            <i-col :md="6" :sm="12" xs="24"></i-col>
+            <i-col :md="6" :sm="12" xs="24"></i-col>
+            <i-col :md="6" :sm="12" xs="24"></i-col>
+        </Row>
+
     </div>
 </template>
 
@@ -68,3 +81,14 @@
         }
     };
 </script>
+<style lang="scss">
+    .home{
+        .ivu-col{
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: pink;
+            background-clip: content-box;//保证内容区域有背景色
+        }
+    }
+</style>
+
